@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -17,11 +18,10 @@ import {
 } from '@loopback/rest';
 import {
 SimpleQuestion,
-QuestionHasAnwer,
 Anwser,
 } from '../models';
 import {SimpleQuestionRepository} from '../repositories';
-
+@authenticate('jwt')
 export class SimpleQuestionAnwserController {
   constructor(
     @repository(SimpleQuestionRepository) protected simpleQuestionRepository: SimpleQuestionRepository,

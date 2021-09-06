@@ -3,3 +3,7 @@ export * from './simple-question.model';
 export * from './anwser.model';
 export * from './test-has-question.model';
 export * from './question-has-anwer.model';
+export * from './user.model';
+export * from './user-credentials.model'
+export * from './user-with-password.model'
+export * from './key-and-password.model'
