@@ -34,7 +34,7 @@ export class TestSimpleQuestionController {
         description: 'Array of Test has many SimpleQuestion through TestHasQuestion',
         content: {
           'application/json': {
-            schema: {type: 'array', items: getModelSchemaRef(SimpleQuestion)},
+            schema: {type: 'array', items: getModelSchemaRef(SimpleQuestion,{includeRelations: true}),},
           },
         },
       },
@@ -44,7 +44,7 @@ export class TestSimpleQuestionController {
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<SimpleQuestion>,
   ): Promise<SimpleQuestion[]> {
-    return this.testRepository.simpleQuestions(id).find(filter);
+    return this.testRepository.simpleQuestions(id).find();
   }
 
   @post('/tests/{id}/simple-questions', {
