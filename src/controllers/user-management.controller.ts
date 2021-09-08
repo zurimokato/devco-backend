@@ -80,7 +80,8 @@ export class UserManagementController {
     newUserRequest: NewUserRequest,
   ): Promise<User> {
     // All new users have the "candidate" role by default
-    newUserRequest.roles = ['candidate']
+    newUserRequest.roles = ['candidate'];
+    newUserRequest.rol='candidate';
     // ensure a valid email value and password value
     validateCredentials(_.pick(newUserRequest, ['email', 'password']));
 

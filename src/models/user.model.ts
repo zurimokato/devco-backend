@@ -42,7 +42,10 @@ export class User extends Entity {
   @hasOne(() => UserCredentials)
   userCredentials: UserCredentials;
 
-
+  @property({
+    type:'string'
+  })
+  rol?:string;
 
   @property({
     type: 'array',
