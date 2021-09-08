@@ -2,6 +2,7 @@ import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository'
 import {SimpleQuestion} from './simple-question.model';
 import {TestHasQuestion} from './test-has-question.model';
 import {Theme} from './theme.model';
+import {User} from './user.model';
 
 @model({settings: {strict: false}})
 export class Test extends Entity {
@@ -28,6 +29,9 @@ export class Test extends Entity {
 
   @belongsTo(() => Theme)
   themeId: string;
+
+  @belongsTo(() => User)
+  candidateId: string;
   @property({
     type: 'string',
   })

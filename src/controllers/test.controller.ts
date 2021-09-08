@@ -78,6 +78,8 @@ export class TestController {
     return this.testRepository.find({include:['theme','simpleQuestions']});
   }
 
+
+
   @patch('/tests')
   @response(200, {
     description: 'Test PATCH success count',
