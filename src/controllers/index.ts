@@ -10,3 +10,4 @@ export * from './theme.controller';
 export * from './user-test.controller';
 export * from './category.controller';
 export * from './category-simple-question.controller';
+export * from './test-theme.controller';

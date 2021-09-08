@@ -1,6 +1,7 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
 import {SimpleQuestion} from './simple-question.model';
 import {TestHasQuestion} from './test-has-question.model';
+import {Theme} from './theme.model';
 
 @model({settings: {strict: false}})
 export class Test extends Entity {
@@ -15,12 +16,6 @@ export class Test extends Entity {
   // Define well-known properties here
   @hasMany(() => SimpleQuestion, {through: {model: () => TestHasQuestion}})
   simpleQuestions: SimpleQuestion[];
-
-  @property({
-    type: 'string',
-  })
-  themeId?: string;
-
   @property({
     type: 'string',
   })
@@ -31,6 +26,8 @@ export class Test extends Entity {
   })
   userIdCandidate?: string;
 
+  @belongsTo(() => Theme)
+  themeId: string;
   @property({
     type: 'string',
   })
