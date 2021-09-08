@@ -17,8 +17,7 @@ export class SimpleQuestion extends Entity {
   name?: string;
 
   @property({
-    type:'string',
-    defaultValue:'simple'
+    type:'string'
   })
   type?:string
 

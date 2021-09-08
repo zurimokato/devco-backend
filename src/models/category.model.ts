@@ -1,9 +1,9 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {SimpleQuestion} from './simple-question.model';
-import {TestHasQuestion} from './test-has-question.model';
+import {CategoryHasQuestion} from './category-has-question.model';
 
 @model({settings: {strict: false}})
-export class Test extends Entity {
+export class Category extends Entity {
   @property({
     type: 'string',
     id: true,
@@ -11,42 +11,32 @@ export class Test extends Entity {
   })
   id?: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  name: string;
 
-  // Define well-known properties here
-  @hasMany(() => SimpleQuestion, {through: {model: () => TestHasQuestion}})
+  @property({
+    type: 'string',
+  })
+  n?: string;
+
+  @hasMany(() => SimpleQuestion, {through: {model: () => CategoryHasQuestion}})
   simpleQuestions: SimpleQuestion[];
-
-  @property({
-    type: 'string',
-  })
-  themeId?: string;
-
-  @property({
-    type: 'string',
-  })
-  userId?: string;
-
-  @property({
-    type: 'string',
-  })
-  userIdCandidate?: string;
-
-  @property({
-    type: 'string',
-  })
-  name?: string
+  // Define well-known properties here
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [prop: string]: any;
 
-  constructor(data?: Partial<Test>) {
+  constructor(data?: Partial<Category>) {
     super(data);
   }
 }
 
-export interface TestRelations {
+export interface CategoryRelations {
   // describe navigational properties here
 }
 
-export type TestWithRelations = Test & TestRelations;
+export type CategoryWithRelations = Category & CategoryRelations;

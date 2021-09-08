@@ -1,5 +1,6 @@
 import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';;
 import {UserCredentials} from './user-credentials.model';
+import {Test} from './test.model';
 
 @model({
   settings: {
@@ -68,6 +69,9 @@ export class User extends Entity {
     type: 'string',
   })
   resetKeyTimestamp: string;
+
+  @hasMany(() => Test)
+  tests: Test[];
 
   constructor(data?: Partial<User>) {
     super(data);

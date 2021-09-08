@@ -5,3 +5,8 @@ export * from './simple-question.controller';
 export * from './test-simple-question.controller';
 export * from './simple-question-anwser.controller';
 export * from './user-management.controller';
+export * from './theme-test.controller';
+export * from './theme.controller';
+export * from './user-test.controller';
+export * from './category.controller';
+export * from './category-simple-question.controller';

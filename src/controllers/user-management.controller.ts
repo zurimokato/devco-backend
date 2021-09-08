@@ -114,7 +114,7 @@ export class UserManagementController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'candidate'],
+    allowedRoles: ['recruiter', 'candidate'],
     voters: [basicAuthorization],
   })
   async set(
@@ -124,8 +124,8 @@ export class UserManagementController {
     @requestBody({description: 'update user'}) user: User,
   ): Promise<void> {
     try {
-      // Only admin can assign roles
-      if (!currentUserProfile.roles.includes('admin')) {
+      // Only recruiter can assign roles
+      if (!currentUserProfile.roles.includes('recruiter')) {
         delete user.roles;
       }
       return await this.userRepository.updateById(userId, user);
@@ -151,7 +151,8 @@ export class UserManagementController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'support', 'candidate'],
+    //roles permitidos
+    allowedRoles: ['recruiter', 'candidate'],
     voters: [basicAuthorization],
   })
   async findById(@param.path.string('userId') userId: string): Promise<User> {
@@ -213,7 +214,7 @@ export class UserManagementController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'support', 'candidate'],
+    allowedRoles: ['recruiter', 'candidate'],
     voters: [basicAuthorization],
   })
   async getCandidates(@param.filter(User) filter?: Filter<User>,){
