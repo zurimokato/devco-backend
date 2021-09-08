@@ -59,10 +59,10 @@ export class TestController {
   ): Promise<Count> {
     return this.testRepository.count(where);
   }
-
+  // te traes lso tests que has creado junto con sus relaciones
   @get('/tests')
   @response(200, {
-    description: 'Array of Test model instances',
+    description: 'Array of Test model instances with relations Category and Quesntions',
     content: {
       'application/json': {
         schema: {
@@ -75,7 +75,7 @@ export class TestController {
   async find(
     @param.filter(Test) filter?: Filter<Test>,
   ): Promise<Test[]> {
-    return this.testRepository.find({include:['theme']});
+    return this.testRepository.find({include:['theme','simpleQuestions']});
   }
 
   @patch('/tests')
