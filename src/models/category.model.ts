@@ -1,9 +1,9 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
-import {Anwser} from './anwser.model';
-import {QuestionHasAnwer} from './question-has-anwer.model';
+import {SimpleQuestion} from './simple-question.model';
+import {CategoryHasQuestion} from './category-has-question.model';
 
 @model({settings: {strict: false}})
-export class SimpleQuestion extends Entity {
+export class Category extends Entity {
   @property({
     type: 'string',
     id: true,
@@ -13,29 +13,30 @@ export class SimpleQuestion extends Entity {
 
   @property({
     type: 'string',
+    required: true,
   })
-  name?: string;
+  name: string;
 
   @property({
-    type:'string'
+    type: 'string',
   })
-  type?:string
+  n?: string;
 
-  @hasMany(() => Anwser, {through: {model: () => QuestionHasAnwer}})
-  anwsers: Anwser[];
+  @hasMany(() => SimpleQuestion, {through: {model: () => CategoryHasQuestion}})
+  simpleQuestions: SimpleQuestion[];
   // Define well-known properties here
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [prop: string]: any;
 
-  constructor(data?: Partial<SimpleQuestion>) {
+  constructor(data?: Partial<Category>) {
     super(data);
   }
 }
 
-export interface SimpleQuestionRelations {
+export interface CategoryRelations {
   // describe navigational properties here
 }
 
-export type SimpleQuestionWithRelations = SimpleQuestion & SimpleQuestionRelations;
+export type CategoryWithRelations = Category & CategoryRelations;

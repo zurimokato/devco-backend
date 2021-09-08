@@ -1,6 +1,8 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
 import {SimpleQuestion} from './simple-question.model';
 import {TestHasQuestion} from './test-has-question.model';
+import {Theme} from './theme.model';
+import {User} from './user.model';
 
 @model({settings: {strict: false}})
 export class Test extends Entity {
@@ -16,9 +18,24 @@ export class Test extends Entity {
   @hasMany(() => SimpleQuestion, {through: {model: () => TestHasQuestion}})
   simpleQuestions: SimpleQuestion[];
   @property({
-    type:'string',
+    type: 'string',
   })
-  name?:string
+  userId?: string;
+
+  @property({
+    type: 'string',
+  })
+  userIdCandidate?: string;
+
+  @belongsTo(() => Theme)
+  themeId: string;
+
+  @belongsTo(() => User)
+  candidateId: string;
+  @property({
+    type: 'string',
+  })
+  name?: string
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

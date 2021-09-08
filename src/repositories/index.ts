@@ -5,3 +5,7 @@ export * from './test-has-question.repository';
 export * from './question-has-anwer.repository';
 export * from './user-credentials.repository';
 export * from './user.repository'
+export * from './theme.repository';
+export * from './category-has-question.repository';
+export * from './user-has-test.repository';
+export * from './category.repository'
