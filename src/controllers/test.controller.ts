@@ -18,7 +18,7 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {Test} from '../models';
+import {Test, Theme} from '../models';
 import {TestRepository} from '../repositories';
 
 @authenticate('jwt')
@@ -75,7 +75,7 @@ export class TestController {
   async find(
     @param.filter(Test) filter?: Filter<Test>,
   ): Promise<Test[]> {
-    return this.testRepository.find(filter);
+    return this.testRepository.find({include:['theme']});
   }
 
   @patch('/tests')
