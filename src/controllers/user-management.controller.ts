@@ -219,7 +219,7 @@ export class UserManagementController {
     voters: [basicAuthorization],
   })
   async getCandidates(@param.filter(User) filter?: Filter<User>,){
-    return this.userRepository.find()
+    return this.userRepository.find({where:{'rol':'candidate'}})
   }
 
 
